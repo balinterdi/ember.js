@@ -84,7 +84,7 @@ export var CoreOutletView = ContainerView.extend({
       ViewClass = this.container.lookupFactory(this._isTopLevel ? 'view:toplevel' : 'view:default');
     }
 
-    view = ViewClass.create({
+    view = this.createChildView(ViewClass, {
       _debugTemplateName: render.name,
       renderedName: render.name,
       controller: render.controller

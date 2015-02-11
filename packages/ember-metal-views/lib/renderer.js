@@ -63,7 +63,7 @@ function Renderer_renderTree(_view, _parentView, _insertAt) {
     if (!contextualElement && parent && parent._childViewsMorph) {
       contextualElement = parent._childViewsMorph.contextualElement;
     }
-    if (!contextualElement && view._didCreateElementWithoutMorph) {
+    if (!contextualElement) {
       // This code path is used by view.createElement(), which has two purposes:
       //
       // 1. Legacy usage of `createElement()`. Nobody really knows what the point
@@ -74,7 +74,7 @@ function Renderer_renderTree(_view, _parentView, _insertAt) {
       // should work fine, because it essentially re-emits the original markup
       // as a String, which will then be parsed again by the browser, which will
       // apply the appropriate parsing rules.
-      contextualElement = typeof document !== 'undefined' ? document.body : null;
+      contextualElement = this._dom.document.body;
     }
     element = this.createElement(view, contextualElement);
 
